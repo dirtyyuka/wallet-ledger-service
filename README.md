@@ -21,9 +21,7 @@ This project involves a high-performance, asynchronous ledger system designed to
 
 ## Architecture 
 <strong>1. Data Integrity </strong>
-Transactions happen inside a @Transactional block which rolls back the database operations if the method is not successfully completed.
-
-This also prevents the same transactions to be recorded again by checking the ledger for any transaction with the same id.
+Transactions happen inside a @Transactional block which rolls back the database operations if the method is not successfully completed. This also prevents the same transactions to be recorded again by checking the ledger for any transaction with the same ID.
 
 <strong>2. Database cleaning </strong>
 A scheduled background worker performs cleanup operations on the transactions table to delete all rows with PROCESSED status. This prevents the database from piling up and lowering performance.
