@@ -16,15 +16,14 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface OutboxRepository extends JpaRepository<OutboxEvent, Long> {
-    
-    List<OutboxEvent> findByProcessedFalse();
+
+    List<OutboxEvent> findByStatus(OutboxStatus status);
 
     @Modifying // update/delete operation
     @Transactional // req for modifying queries
     @Query("DELETE FROM OutboxEvent e where e.status = :status and e.processedAt < :threshold")
     int bulkDeleteByStatusAndProcessedAtBefore(
-        @Param("status") OutboxStatus status,
-        @Param("threshold") LocalDateTime threshold
-    );
-    
+            @Param("status") OutboxStatus status,
+            @Param("threshold") LocalDateTime threshold);
+
 }

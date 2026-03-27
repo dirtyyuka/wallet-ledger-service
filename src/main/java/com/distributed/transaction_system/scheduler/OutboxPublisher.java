@@ -26,7 +26,7 @@ public class OutboxPublisher {
     // method runs every 2 secs
     @Scheduled(fixedRate = 2000) 
     public void publishToKafka() {
-        List<OutboxEvent> pendingEvents = outboxRepository.findByProcessedFalse();
+        List<OutboxEvent> pendingEvents = outboxRepository.findByStatus(OutboxStatus.PENDING);
 
         if (pendingEvents.isEmpty()) {
             return;
