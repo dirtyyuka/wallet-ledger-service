@@ -26,7 +26,7 @@ Transactions happen inside a @Transactional block which rolls back the database 
 <strong>2. Database cleaning </strong>
 A scheduled background worker performs cleanup operations on the transactions table to delete all rows with PROCESSED status. This prevents the database from piling up and lowering performance.
 
-### Setup
+## Setup
 1. Clone the repository
 ```git
 git clone https://github.com/dirtyyuka/wallet-ledger-service
